@@ -1,11 +1,12 @@
 import prompt from "prompt";
-import mainPrompt from "./prompt/prompt-main.js";
-import chalk from "chalk";
+import promptSchemaMain from "./prompt-schema/prompt-schema-main.js";
 import createQRCode from "./services/qr-code/create.js";
 import createPasswords from "./services/password/create.js";
 
 async function main(params) {
-    prompt.get(mainPrompt, async (err, choose) => {
+    prompt.get(promptSchemaMain, async (err, choose) => {
+        if(err) console.log(err);
+
         if(choose.select == 1) await createQRCode();
         if(choose.select == 2) await createPasswords();
     });
